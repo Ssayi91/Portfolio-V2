@@ -85,11 +85,11 @@ section {
     background-color: #122620;
 }
 
-#experience {
-    background-color: white;
-}
 
 #contact {
+    background-color: #fff;
+}
+footer{
     background-color: #122620;
 }
 
@@ -106,10 +106,10 @@ section h1, section h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('assets/bg2.png');
+    background-image: url('assets/2.png');
     background-attachment: fixed;
     background-size: contain;
-    background-position: center;
+    background-position: center bottom;
     background-repeat: no-repeat;
     opacity: 0.5;
     z-index: -1;
@@ -336,6 +336,55 @@ form button {
 form button:hover {
     background-color: #222;
 }
+/* footer section */
+footer {
+    color: #fff; /* White text color */
+    padding: 20px 0; /* Padding for spacing */
+    text-align: center; /* Center the content */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; /* Makes it responsive on smaller screens */
+    justify-content: space-around; /* Space between sections */
+    align-items: center; /* Aligns vertically */
+    max-width: 900px; /* Keeps the footer from stretching too wide */
+    margin: 0 auto; /* Centers the footer content */
+}
+
+.footer-section {
+    margin: 10px; /* Space between sections */
+}
+
+.contact-info p, .copyright-info {
+    margin: 10px 0; /* Adds space between paragraphs */
+}
+
+footer i {
+    font-size: 24px; /* Adjust the size of icons */
+    margin-right: 10px; /* Adds space next to icons */
+}
+
+footer p {
+    font-size: 16px; /* Adjust the text size */
+    line-height: 1.5; /* Makes the text easier to read */
+}
+
+footer a {
+    color: #fff; /* Ensures links are visible */
+    text-decoration: none; /* Remove underline */
+}
+
+.copyright {
+    font-size: 18px; /* Increase copyright text size */
+    font-weight: 800; /* Make it stand out */
+    margin-top: 10px; /* Adds some space */
+}
+
+.footer-section p {
+    font-weight: 600; /* Adjusts text weight for readability */
+}
 
 /* Mobile Responsive Styles */
 @media screen and (max-width: 768px) {
@@ -423,5 +472,9 @@ form button:hover {
 
     form button {
         font-size: 1em;
+    }
+    .footer-content {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+        text-align: center; /* Center content on mobile */
     }
 }
