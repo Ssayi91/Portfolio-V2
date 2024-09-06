@@ -289,53 +289,86 @@ span {
     color: #fff;
 }
 
-/* Experience Section */
-.experience-list {
+/* General Rate Card Styling */
+#pricing {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.experience-list div {
-    background-color: #555;
-    margin: 10px 0;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
     padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-}
-
-/* Contact Section */
-form {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-}
-
-form input, form textarea {
+    background-color: #fff;
+  }
+  
+  /* Individual card styling */
+  .pricing-card {
+    flex: 1;
+    max-width: 300px;
+    background-color: #fff;
+    border: 1px solid #122620;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(24, 23, 23, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .pricing-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  /* Colors for each category */
+  .basic {
+    background-color: #122620;
+  }
+  
+  .standard {
+    background-color: #122620;
+  }
+  
+  .advanced {
+    background-color: #122620;
+  }
+  
+  /* Heading and text styling */
+  .pricing-card h2 {
+    color: #0097b2;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+  
+  .pricing-card p {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+  
+  .pricing-card ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  .pricing-card ul li {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
     margin-bottom: 10px;
-    padding: 15px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    color: #fff;
     font-size: 1em;
-    background-color: #444;
-    color: #fff;
-}
+  }
+  
+  /* Pricing styling */
+  .price {
+    font-size: 28px;
+    font-weight: 600;
+    color: #0097b2;
+  }
+  
 
-form button {
-    padding: 15px;
-    border-radius: 5px;
-    border: none;
-    background-color: #111;
-    color: #fff;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-form button:hover {
-    background-color: #222;
-}
 /* footer section */
 footer {
     color: #fff; /* White text color */
@@ -357,34 +390,41 @@ footer {
     margin: 10px; /* Space between sections */
 }
 
-.contact-info p, .copyright-info {
-    margin: 10px 0; /* Adds space between paragraphs */
-}
-
 footer i {
-    font-size: 24px; /* Adjust the size of icons */
+    font-size: 25px; /* Adjust the size of icons */
     margin-right: 10px; /* Adds space next to icons */
 }
 
 footer p {
-    font-size: 16px; /* Adjust the text size */
+    font-size: 20px; /* Adjust the text size */
     line-height: 1.5; /* Makes the text easier to read */
+    font-weight: 500;
 }
-
-footer a {
-    color: #fff; /* Ensures links are visible */
-    text-decoration: none; /* Remove underline */
-}
-
+.copyright-info {
+        display: flex;              
+        flex-direction: column;      
+        align-items: center;     
+    }
+    
 .copyright {
-    font-size: 18px; /* Increase copyright text size */
-    font-weight: 800; /* Make it stand out */
-    margin-top: 10px; /* Adds some space */
+    font-size: 20px; 
+    font-weight: 700; 
+    justify-content: center;
+    align-items: center;
 }
 
-.footer-section p {
-    font-weight: 600; /* Adjusts text weight for readability */
+.copyright-info p {
+    font-size: 20px; 
+    font-weight: 600; 
+    text-align: center;
 }
+
+@media (min-width: 768px) {
+    .copyright-info {
+        text-align: left; /* Align text to the left on larger screens */
+    }
+}
+
 
 /* Mobile Responsive Styles */
 @media screen and (max-width: 768px) {
@@ -461,20 +501,12 @@ footer a {
     .projects-gallery {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
-
-    form {
-        padding: 0 20px;
-    }
-
-    form input, form textarea {
-        font-size: 1em;
-    }
-
-    form button {
-        font-size: 1em;
-    }
-    .footer-content {
-        flex-direction: column; /* Stack sections vertically on smaller screens */
-        text-align: center; /* Center content on mobile */
-    }
+    #pricing {
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .pricing-card {
+        max-width: 100%;
+      }
 }
