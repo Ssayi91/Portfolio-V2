@@ -506,11 +506,12 @@ footer p {
     }
 
     #skills h1 {
-        font-size: 28px;
-        
+        font-size: 24px;
+
     }
     #skills p{
         font-size: 20px;
+        text-align: left;
     }
 
     .subheading {
