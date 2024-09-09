@@ -500,7 +500,11 @@ footer p {
     }
 
     .projects-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+    }
+    .projects-gallery div img {
+        width: 100%;
+        border-radius: 8px;
     }
     #pricing {
         flex-direction: column;
