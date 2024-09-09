@@ -123,7 +123,7 @@ section h1, section h2 {
 /* About Me Section */
 #about {
     position: relative;
-    padding: 100px 0;
+    padding: 100px 10px;
     margin-top: 100px;
     display: flex;
     justify-content: flex-start;
@@ -153,6 +153,14 @@ section h1, section h2 {
     margin-bottom: 20px;
     line-height: 1.5;
     text-align: justify;
+}
+#about p1{
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: left;
 }
 
 span {
@@ -186,7 +194,7 @@ span {
     transition: ease 2s;
 }
 
-/* Skills Section */
+/* other services */
 #skills {
     display: flex;
     position: relative;
@@ -198,12 +206,25 @@ span {
 }
 
 #skills h1 {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     font-weight: 800;
-    font-size: 50px;
+    font-size: 30px;
     line-height: 2;
     color: #122620;
     text-align: left;
+    padding: 10px;
+}
+#skills p{
+    font-size: 18px;
+    color: #122620;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    line-height: 1.5;
+    text-align: justify;
+}
+#skills i{
+    font-size: 30px;
 }
 
 .subheading {
@@ -216,7 +237,7 @@ span {
     margin-right: 22px;
     margin-bottom: 30px;
     font-size: 28px;
-    padding-top: 20px;
+    padding: 10px;
     font-weight: 600;
 }
 
@@ -485,7 +506,10 @@ footer p {
     }
 
     #skills h1 {
-        font-size: 38px;
+        font-size: 28px;
+    }
+    #skills p{
+        font-size: 20px;
     }
 
     .subheading {
