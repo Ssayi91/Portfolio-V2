@@ -112,7 +112,7 @@ section h1, section h2 {
     background-size: contain;
     background-position: center bottom;
     background-repeat: no-repeat;
-    opacity: 0.5;
+    opacity: 0.2;
     z-index: -1;
 }
 
