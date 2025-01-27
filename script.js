@@ -24,6 +24,13 @@ const scrollRevealOption = {
 };
 
 // header container
+ScrollReveal().reveal('.header__content', {
+    duration: 2000,
+    origin: 'left',
+    distance: '50px',
+    delay: 200
+});
+
 ScrollReveal().reveal(".header__content h1", {
   ...scrollRevealOption,
 });
@@ -54,13 +61,23 @@ ScrollReveal().reveal(".about__content .about__btn", {
 });
 
 // service container
-ScrollReveal().reveal(".service__card", {
-  ...scrollRevealOption,
-  interval: 500,
+ScrollReveal().reveal('.service__card', {
+    duration: 1000,
+    distance: '30px',
+    origin: 'bottom',
+    interval: 100
 });
 
 // portfolio container
-ScrollReveal().reveal(".portfolio__card", {
-  duration: 1000,
-  interval: 500,
+ScrollReveal().reveal('.portfolio__card', {
+    duration: 1500,
+    scale: 0.85,
+    interval: 200
+});
+
+ScrollReveal().reveal('.section__header', {
+    duration: 1000,
+    distance: '20px',
+    origin: 'top',
+    delay: 100
 });
