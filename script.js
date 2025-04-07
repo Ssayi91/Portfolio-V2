@@ -69,19 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
   
-  // 3D Tilt Effect
-  document.querySelectorAll('.service-card, .portfolio-item').forEach(card => {
-      card.addEventListener('mousemove', function(e) {
-          const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-          const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-          this.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-      });
-      
-      card.addEventListener('mouseleave', function() {
-          this.style.transform = 'rotateY(0deg) rotateX(0deg)';
-      });
-  });
-  
+
   // Form Submission with Animation
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
@@ -172,4 +160,36 @@ function createConfetti() {
           }
       };
   }
+}
+
+// Open Modal
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+}
+
+// Close Modal
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+// Image Carousel Logic
+let currentSlide = 0;
+
+function moveCarousel(direction) {
+    const carousel = document.querySelector('.carousel');
+    const items = document.querySelectorAll('.carousel-item');
+    currentSlide = (currentSlide + direction + items.length) % items.length;
+    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
+
+// Open Image Popup
+function openImagePopup(imageSrc, description) {
+    document.getElementById('popupImage').src = imageSrc;
+    document.getElementById('popupDescription').innerText = description;
+    document.getElementById('imagePopup').style.display = 'flex';
+}
+
+// Close Image Popup
+function closeImagePopup() {
+    document.getElementById('imagePopup').style.display = 'none';
 }
