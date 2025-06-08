@@ -1,195 +1,145 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Mobile Menu Toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu');
-  const navMenu = document.querySelector('.nav-menu');
-  
-  mobileMenuBtn.addEventListener('click', function() {
-      this.classList.toggle('active');
-      navMenu.classList.toggle('active');
-      document.body.classList.toggle('no-scroll');
-  });
-  
-  // Close mobile menu when clicking on a link
-  document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function() {
-          mobileMenuBtn.classList.remove('active');
-          navMenu.classList.remove('active');
-          document.body.classList.remove('no-scroll');
-      });
-  });
-  
-  // Typing Animation
-  const typed = new Typed('.typing', {
-      strings: ['Business', 'Brand', 'Online Presence', 'Vision'],
-      typeSpeed: 120,
-      backSpeed: 90,
-      loop: true,
-      smartBackspace: true,
-      cursorChar: '|',
-      shuffle: true
-  });
-  
-  // Smooth Scroll with Offset
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          const target = document.querySelector(this.getAttribute('href'));
-          const headerHeight = document.querySelector('header').offsetHeight;
-          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-          
-          window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-          });
-      });
-  });
-  
-  // Active Link Highlighting
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  window.addEventListener('scroll', function() {
-      let current = '';
+    // Toggle dark mode
+    document.getElementById('toggleTheme').addEventListener('click', function() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    });
+    
+    // Set initial theme based on preference
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('mobileMenu');
+      const menuBtn = document.getElementById('mobileMenuBtn');
       
-      sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          
-          if (window.pageYOffset >= (sectionTop - sectionHeight / 3)) {
-              current = section.getAttribute('id');
-          }
-      });
-      
-      navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-              link.classList.add('active');
-          }
-      });
-  });
-  
-
-  // Form Submission with Animation
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
-          const submitBtn = this.querySelector('.submit-button');
-          submitBtn.innerHTML = '<i class="ri-loader-4-line animate-spin"></i> Sending...';
-          submitBtn.disabled = true;
-          
-          // Simulate API call
-          setTimeout(() => {
-              submitBtn.innerHTML = '<i class="ri-check-line"></i> Message Sent!';
-              
-              // Add confetti effect
-              createConfetti();
-              
-              setTimeout(() => {
-                  this.reset();
-                  submitBtn.innerHTML = '<span>Send Message</span> <i class="ri-send-plane-line"></i>';
-                  submitBtn.disabled = false;
-              }, 2000);
-          }, 1500);
-      });
-  }
-  
-  // Back to Top Button
-  const backToTop = document.getElementById('backToTop');
-  window.addEventListener('scroll', function() {
-      if (window.pageYOffset > 300) {
-          backToTop.classList.add('active');
-      } else {
-          backToTop.classList.remove('active');
+      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        menu.classList.add('hidden');
       }
-  });
-  
-  backToTop.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          document.getElementById('mobileMenu').classList.add('hidden');
+        }
       });
-  });
-  
-  // Current Year in Footer
-  document.getElementById('current-year').textContent = new Date().getFullYear();
-});
-
-// Simple Confetti Effect
-function createConfetti() {
-  const colors = ['#00f0ff', '#ff2d75', '#ffffff', '#0097b2'];
-  const confettiContainer = document.createElement('div');
-  confettiContainer.style.position = 'fixed';
-  confettiContainer.style.top = '0';
-  confettiContainer.style.left = '0';
-  confettiContainer.style.width = '100%';
-  confettiContainer.style.height = '100%';
-  confettiContainer.style.pointerEvents = 'none';
-  confettiContainer.style.zIndex = '1000';
-  document.body.appendChild(confettiContainer);
-  
-  for (let i = 0; i < 100; i++) {
-      const confetti = document.createElement('div');
-      confetti.style.position = 'absolute';
-      confetti.style.width = '10px';
-      confetti.style.height = '10px';
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.borderRadius = '50%';
-      confetti.style.left = `${Math.random() * 100}vw`;
-      confetti.style.top = '-10px';
-      confetti.style.opacity = '0.8';
-      confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-      
-      const animation = confetti.animate([
-          { top: '-10px', opacity: 0.8 },
-          { top: '100vh', opacity: 0 }
-      ], {
-          duration: Math.random() * 400000000 + 200000000,
-          easing: 'cubic-bezier(0.3, 0.8, 0.6, 5)'
+    });
+    
+    // Initialize GSAP animations
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hero title animation
+      gsap.from('#heroTitle', {
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: 'power3.out'
       });
       
-      confettiContainer.appendChild(confetti);
+      // Services animation
+      gsap.utils.toArray('.portfolio-item').forEach((item, index) => {
+        gsap.from(item, {
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 90%'
+          },
+          duration: 0.5,
+          y: 30,
+          opacity: 0,
+          delay: index * 0.1,
+          ease: 'power2.out'
+        });
+      });
       
-      animation.onfinish = () => {
-          confetti.remove();
-          if (confettiContainer.children.length === 0) {
-              confettiContainer.remove();
-          }
-      };
-  }
-}
+      // Pricing cards animation
+      gsap.utils.toArray('.pricing-card').forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%'
+          },
+          duration: 0.7,
+          y: 40,
+          opacity: 0,
+          delay: index * 0.15,
+          ease: 'back.out(1.7)'
+        });
+      });
+    });
 
-// Open Modal
-function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'flex';
-}
+    document.getElementById('quoteForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-// Close Modal
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-}
+    const name = this.name.value.trim();
+    const email = this.email.value.trim();
+    const service = this.service.value;
 
-// Image Carousel Logic
-let currentSlide = 0;
+    const phone = '254736194051'; // Replace with your WhatsApp number
+    let message = `Hello, I would like a quote.\n\nName: ${name}\nService: ${service}`;
+    if (email) message += `\nEmail: ${email}`;
 
-function moveCarousel(direction) {
-    const carousel = document.querySelector('.carousel');
-    const items = document.querySelectorAll('.carousel-item');
-    currentSlide = (currentSlide + direction + items.length) % items.length;
-    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-}
+    const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
+  });
 
-// Open Image Popup
-function openImagePopup(imageSrc, description) {
-    document.getElementById('popupImage').src = imageSrc;
-    document.getElementById('popupDescription').innerText = description;
-    document.getElementById('imagePopup').style.display = 'flex';
-}
+   document.getElementById('quoteForms').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent normal form submission
+    
+    // WhatsApp number you want to send messages to (include country code, no + or spaces)
+    const whatsappNumber = "254736194051"; 
+    
+    // Get form values
+    const name = encodeURIComponent(document.getElementById('name').value.trim());
+    const email = encodeURIComponent(document.getElementById('email').value.trim());
+    const service = encodeURIComponent(document.getElementById('service').value);
+    const message = encodeURIComponent(document.getElementById('message').value.trim());
+    
+    // Compose WhatsApp message text
+    const text = `*New Quote Request*%0A` +
+                 `*Name:* ${name}%0A` +
+                 `*Email:* ${email}%0A` +
+                 `*Service Interested:* ${service}%0A` +
+                 `*Project Details:* ${message}`;
+                 
+    // WhatsApp URL with pre-filled message
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${text}`;
+    
+    // Open WhatsApp in a new tab/window
+    window.open(whatsappURL, '_blank');
+  });
 
-// Close Image Popup
-function closeImagePopup() {
-    document.getElementById('imagePopup').style.display = 'none';
-}
+  // FAQ toggle functionality
+  document.querySelectorAll('.faq-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('svg');
+
+      // Toggle content visibility
+      if(content.classList.contains('hidden')){
+        content.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        content.classList.add('hidden');
+        icon.style.transform = 'rotate(0deg)';
+      }
+    });
+  });
